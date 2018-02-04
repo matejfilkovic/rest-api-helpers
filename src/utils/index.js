@@ -5,7 +5,7 @@ import type {
 } from '../types'
 
 export function buildUrlWithQueryParams(baseUrl: string, queryParams: Array<QueryParam>): string {
-  if (queryParams.size) return baseUrl
+  if (!queryParams.length) return baseUrl
 
   const queryParamsKeyValue = (
     queryParams.map((queryParam) => {
@@ -24,7 +24,5 @@ export function buildUrlWithQueryParams(baseUrl: string, queryParams: Array<Quer
     }).filter(keyValue => keyValue)
   )
 
-  const queryParamsJoined = queryParamsKeyValue.length ? `?${queryParamsKeyValue.join('&')}` : ''
-
-  return encodeURI(`${baseUrl}${queryParamsJoined}`)
+  return encodeURI(`${baseUrl}?${queryParamsKeyValue.join('&')}`)
 }
