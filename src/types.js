@@ -1,7 +1,12 @@
 // @flow
 
+export type QueryParam = {
+  name: string,
+  value: string | Array<string | number>
+}
+
 export interface AccessClient {
-  get(endpoint: string, queryParams: any): Promise<any>;
+  get(endpoint: string, queryParams?: Array<QueryParam>): Promise<any>;
 
   post(endpoint: string, params: any): Promise<any>;
 
